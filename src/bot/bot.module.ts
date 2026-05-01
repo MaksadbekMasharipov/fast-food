@@ -13,7 +13,16 @@ import { SeedService } from './seed.service';
     TelegrafModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        token: config.get<string>('BOT_TOKEN') ?? '',
+        token: (() => {
+          const token = (config.get<string>('BOT_TOKEN') ?? '').trim();
+          // Basic sanity check to fail fast with clear message
+          if (!/^\d+:[A-Za-z0-9_-]+$/.test(token)) {
+            throw new Error(
+              'BOT_TOKEN noto‘g‘ri ko‘rinishda. .env ichida BOT_TOKEN ni tekshiring (BotFather bergan token bo‘lishi kerak).',
+            );
+          }
+          return token;
+        })(),
       }),
     }),
     MongooseModule.forFeature([

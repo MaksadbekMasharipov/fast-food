@@ -25,7 +25,13 @@ exports.BotModule = BotModule = __decorate([
             nestjs_telegraf_1.TelegrafModule.forRootAsync({
                 inject: [config_1.ConfigService],
                 useFactory: (config) => ({
-                    token: config.get('BOT_TOKEN') ?? '',
+                    token: (() => {
+                        const token = (config.get('BOT_TOKEN') ?? '').trim();
+                        if (!/^\d+:[A-Za-z0-9_-]+$/.test(token)) {
+                            throw new Error('BOT_TOKEN noto‘g‘ri ko‘rinishda. .env ichida BOT_TOKEN ni tekshiring (BotFather bergan token bo‘lishi kerak).');
+                        }
+                        return token;
+                    })(),
                 }),
             }),
             mongoose_1.MongooseModule.forFeature([
