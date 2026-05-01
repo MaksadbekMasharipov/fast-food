@@ -1,6 +1,30 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+## Fastfood yetkazib berish Telegram boti
+
+NestJS + MongoDB + Telegraf asosida mini fastfood bot.
+
+### Ishga tushirish
+
+1) `.env` yarating:
+
+```bash
+cp .env.example .env
+```
+
+2) `.env` ichiga `BOT_TOKEN` va `MONGO_URI` yozing.
+
+3) MongoDB ishga tushiring (local yoki Atlas).
+
+4) Botni ishga tushiring:
+
+```bash
+npm run start:dev
+```
+
+### Bot oqimi
+
+- `/start`: telefon raqam so‘raydi → location so‘raydi → kategoriya menyu (ichimliklar/yeguliklar/shirinliklar)
+- Kategoriya: shu kategoriya mahsulotlari ro‘yxati
+- Mahsulot: nomi, narxi, rasmi, tarkibi + inline “Buyurtma berish”
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
